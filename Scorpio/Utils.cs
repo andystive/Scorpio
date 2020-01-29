@@ -380,7 +380,7 @@ namespace Scorpio
             return Regex.IsMatch(input, pattern, RegexOptions.IgnoreCase);
         }
 
-        #region
+        #endregion
 
         #region 开机自启
 
@@ -737,6 +737,6 @@ namespace Scorpio
             }
         }
 
-        #region
+        #endregion
     }
 }
