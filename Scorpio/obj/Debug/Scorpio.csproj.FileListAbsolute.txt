@@ -1,0 +1,5 @@
+C:\Users\JOBS\source\repos\Scorpio\Scorpio\obj\Debug\Scorpio.csprojAssemblyReference.cache
+C:\Users\JOBS\source\repos\Scorpio\Scorpio\obj\Debug\MainWindow.g.cs
+C:\Users\JOBS\source\repos\Scorpio\Scorpio\obj\Debug\App.g.cs
+C:\Users\JOBS\source\repos\Scorpio\Scorpio\obj\Debug\Scorpio_MarkupCompile.cache
+C:\Users\JOBS\source\repos\Scorpio\Scorpio\obj\Debug\Scorpio_MarkupCompile.lref
