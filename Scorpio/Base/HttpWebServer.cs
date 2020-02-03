@@ -3,11 +3,16 @@ using System.Net;
 using System.Text;
 using System.Threading;
 
+/// <summary>
+/// 创建Base命名空间中HTTPServer类
+/// </summary>
 namespace Scorpio.Base
 {
     public class HttpWebServer
     {
+        // 创建Http协议侦听器
         private HttpListener _listener;
+        // 定义Func委派
         private Func<string, string> _responderMethod;
 
         public HttpWebServer(string[] prefixes, Func<string, string> method)
@@ -17,6 +22,7 @@ namespace Scorpio.Base
                 _listener = new HttpListener();
 
                 if (!HttpListener.IsSupported)
+                    // 抛出异常
                     throw new NotSupportedException(
                     "Needs Windows XP SP2, Server 2003 or later.");
 

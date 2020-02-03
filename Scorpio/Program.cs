@@ -18,7 +18,7 @@ namespace Scorpio
         [STAThread]
         static void Main()
         {
-            //检测当前系统版本是否大于Windows7
+            //检测当前系统版本是否大于Windows7，若大于win7则启用高DPI
             if (Environment.OSVersion.Version.Major >= 6)
             {
                 SetProcessDPIAware();
