@@ -30,7 +30,71 @@ namespace Scorpio.Base
                     throw new ArgumentException("method");
 
                 foreach (string s in prefixes)
+                    _listener.Prefixes.Add(s);
 
+                _responderMethod = method;
+                _listener.Start();
+
+            }
+            catch (Exception ex)
+            {
+                Utils.SaveLog(ex.Message, ex);
+                throw;
+            }
+        }
+
+        public HttpWebServer(Func<string, string> method, params string[] prefixes)
+            : this(prefixes, method) { }
+
+        public void Run()
+        {
+            ThreadPool.QueueUserWorkItem((o) =>
+            {
+                Utils.SaveLog("Webserver running...");
+                try
+                {
+                    while (_listener.IsListening)
+                    {
+                        ThreadPool.QueueUserWorkItem((c) =>
+                        {
+                            var ctx = c as HttpListenerContext;
+                            try
+                            {
+                                string address = ctx.Request.LocalEndPoint.Address.ToString();
+                                Utils.SaveLog("Webserver Request " + address);
+                                string rstr = _responderMethod(address);
+                                byte[] buf = Encoding.UTF8.GetBytes(rstr);
+                                ctx.Response.StatusCode = 200;
+                                ctx.Response.ContentType = "application/x-ns-proxy-autoconfig";
+                                ctx.Response.ContentLength64 = buf.Length;
+                                ctx.Response.OutputStream.Write(buf, 0, buf.Length);
+                            }
+                            catch
+                            {
+                            }    // suppress any exceptions
+                            finally
+                            {
+                                // always close the stream
+                                ctx.Response.OutputStream.Close();
+                            }
+                        }, _listener.GetContext());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Utils.SaveLog(ex.Message, ex);
+                } // suppress any exceptions
+            });
+        }
+
+        public void Stop()
+        {
+            if (_listener != null)
+            {
+                _listener.Stop();
+                _listener.Close();
+                _listener = null;
             }
         }
     }
+}
