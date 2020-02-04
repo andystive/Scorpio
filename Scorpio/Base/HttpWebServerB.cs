@@ -64,21 +64,68 @@ namespace Scorpio.Base
                 {
                     var data = ReadStream(inputStream);
 
-                    if (_responderMethod != null)
+                    if (data.Contains("/pac/"))
                     {
-                        var address = ((IPEndPoint)socket.Client.LocalEndPoint).Address.ToString();
-                        Utils.SaveLog("WebserverB Request " + address);
-                        string pac = _responderMethod(address);
 
-                        if (inputStream.CanWrite)
+                        if (_responderMethod != null)
                         {
-                            WriteStream(outputStream, pac);
+                            var address = ((IPEndPoint)socket.Client.LocalEndPoint).Address.ToString();
+                            Utils.SaveLog("WebserverB Request " + address);
+                            string pac = _responderMethod(address);
+
+                            if (inputStream.CanWrite)
+                            {
+                                WriteStream(outputStream, pac);
+                            }
                         }
                     }
                 }
-            }
 
-            outputStream.BaseStream.Flush();
+                outputStream.BaseStream.Flush();
+                inputStream = null;
+                outputStream = null;
+                socket.Close();
+            }
+            catch (Exception ex)
+            {
+                Utils.SaveLog(ex.Message, ex);
+            }
+        }
+
+        private string ReadStream(Stream inputStream)
+        {
+            int nextchar;
+            string data = "";
+            while (true)
+            {
+                nextchar = inputStream.ReadByte();
+                if (nextchar == '\n')
+                {
+                    break;
+                }
+                if (nextchar == '\r')
+                {
+                    continue;
+                }
+                if (nextchar == -1)
+                {
+                    Thread.Sleep(1);
+                    continue;
+                };
+                data += Convert.ToChar(nextchar);
+            }
+            return data;
+        }
+
+        private void WriteStream(StreamWriter outputStream, string pac)
+        {
+            var content_type = "application/x-ns-proxy-autocpnfig";
+            outputStream.WriteLine("HTTP/1.1 200 OK");
+            outputStream.WriteLine(String.Format("Content-Type:{0}", content_type));
+            outputStream.WriteLine("Connection: close");
+            outputStream.WriteLine("");
+            outputStream.WriteLine(pac);
+            outputStream.Flush();
         }
     }
 }
