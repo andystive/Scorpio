@@ -68,6 +68,7 @@
     </ApplicationDefinition>
     <Compile Include="Base\HttpWebServer.cs" />
     <Compile Include="Base\HttpWebServerB.cs" />
+    <Compile Include="Base\StringEx.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
