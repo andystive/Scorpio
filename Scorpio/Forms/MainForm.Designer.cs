@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.splitContainerl = new System.Windows.Forms.SplitContainer();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.lvServers = new Scorpio.Base.ListViewFlickerFree();
             this.cmsLv = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripSeparatorl = new System.Windows.Forms.ToolStripSeparator();
@@ -79,9 +79,122 @@
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbCheckUpdate = new System.Windows.Forms.ToolStripDropDownButton();
             this.tsbCheckUpdatePACList = new System.Windows.Forms.ToolStripMenuItem();
-
-
+            this.tsbCheckClearPACList = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbHelp = new System.Windows.Forms.ToolStripDropDownButton();
+            this.tsbAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbLanguageDef = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbClose = new System.Windows.Forms.ToolStripButton();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerl)).BeginInit();
+            this.splitContainerl.Panel1.SuspendLayout();
+            this.splitContainerl.panel2.SuspendLayout();
+            this.splitContainerl.SuspendLayout();
+            this.cmsLv.SuspendLayout();
+            this.cmsMain.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.ssMain.SuspendLayout();
+   
             this.SuspendLayout();
+
+            //
+            // splitContainer1
+            //
+            resources.ApplyResources(this.splitContainer1, "splitContainer1");
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+            this.splitContainer1.Name = "splitContainer1";
+
+            //
+            //splitContainer1.Panel1
+            //
+            this.splitContainer1.Panel1.Controls.Add(this.lvServers);
+
+            //
+            // splitContainer1.panel2
+            //
+            this.splitContainerl.Panel2.Controls.Add(this.qrCodeControl);
+            this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
+
+            // 
+            // lvServers
+            // 
+            this.lvServers.ContextMenuStrip = this.cmsLv;
+            resources.ApplyResources(this.lvServers, "lvServers");
+            this.lvServers.FullRowSelect = true;
+            this.lvServers.GridLines = true;
+            this.lvServers.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvServers.HideSelection = false;
+            this.lvServers.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            ((System.Windows.Forms.ListViewItem)(resources.GetObject("lvServers.Items")))});
+            this.lvServers.MultiSelect = false;
+            this.lvServers.Name = "lvServers";
+            this.lvServers.UseCompatibleStateImageBehavior = false;
+            this.lvServers.View = System.Windows.Forms.View.Details;
+            this.lvServers.SelectedIndexChanged += new System.EventHandler(this.lvServers_SelectedIndexChanged);
+            this.lvServers.DoubleClick += new System.EventHandler(this.lvServers_DoubleClick);
+            this.lvServers.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lvServers_KeyDown);
+            // 
+            // cmsLv
+            // 
+            this.cmsLv.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmsLv.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuAddVmessServer,
+            this.menuAddShadowsocksServer,
+            this.menuAddSocksServer,
+            this.menuAddCustomServer,
+            this.menuAddServers,
+            this.menuScanScreen,
+            this.toolStripSeparator1,
+            this.menuRemoveServer,
+            this.menuRemoveDuplicateServer,
+            this.menuCopyServer,
+            this.menuSetDefaultServer,
+            this.toolStripSeparator3,
+            this.menuMoveTop,
+            this.menuMoveUp,
+            this.menuMoveDown,
+            this.menuMoveBottom,
+            this.menuSelectAll,
+            this.toolStripSeparator9,
+            this.menuPingServer,
+            this.menuTcpingServer,
+            this.menuRealPingServer,
+            this.menuSpeedServer,
+            this.toolStripSeparator6,
+            this.menuExport2ClientConfig,
+            this.menuExport2ServerConfig,
+            this.menuExport2ShareUrl,
+            this.menuExport2SubContent});
+            this.cmsLv.Name = "cmsLv";
+            this.cmsLv.OwnerItem = this.tsbServer;
+            resources.ApplyResources(this.cmsLv, "cmsLv");
+
+            // 
+            // menuSetDefaultServer
+            // 
+            this.menuSetDefaultServer.Name = "menuSetDefaultServer";
+            resources.ApplyResources(this.menuSetDefaultServer, "menuSetDefaultServer");
+            this.menuSetDefaultServer.Click += new System.EventHandler(this.menuSetDefaultServer_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            resources.ApplyResources(this.toolStripSeparator3, "toolStripSeparator3");
+
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            resources.ApplyResources(this.toolStripSeparator9, "toolStripSeparator9");
+            // 
+            // menuPingServer
+            // 
+            this.menuPingServer.Name = "menuPingServer";
+            resources.ApplyResources(this.menuPingServer, "menuPingServer");
+            this.menuPingServer.Click += new System.EventHandler(this.menuPingServer_Click);
+
             // 
             // MainForm
             // 
